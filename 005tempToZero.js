@@ -1,25 +1,53 @@
 let min=prompt("Escribe los minutos");
 let seg=prompt("Escribe los segundos");
 temporizador(seg,min);
-//const timer = ms => new Promise(res => setTimeout(res, ms));
 function temporizador(seg,min=0){   
-    // min = (typeof min !== 'undefined') ?  min : 0;
-    if(min==0){
-        //document.write(seg+" segundos");
-        consegundos(seg);
+    if(min==0||null){
+        let paraseg=setInterval(function() {
+                if(seg==0){
+                    console.log("SE ACABÓ EL TIEMPO");
+                    clearInterval(paraseg);
+                }else if(seg==1){
+                    console.log("Queda: "+seg+" segundo \n");
+                    seg--;
+                }else{
+                    console.log("Quedan: "+seg+" segundos \n");
+                    seg--;
+                }
+
+            }, 1000,seg);    
     }else{
-        document.write(min+" minutos y "+seg+" segundos");
+        let conminutos=setInterval(function() {
+            if(min==0&&seg==0){
+                clearInterval(conminutos);
+                console.log("SE ACABÓ EL TIEMPO");
+            }
+            if(seg<0){
+                seg=59;
+                min--;
+            }
+            if (seg==0&&min!=0){
+                if(min==1){
+                    console.log("Queda: "+min+" minuto \n");
+                    seg--;
+                }else{
+                    console.log("Quedan: "+min+" minutos \n");
+                    seg--;
+                }
+            }
+            else if(min>0){
+                console.log("Quedan: "+min+" minutos y "+seg+" segundos \n");
+                seg--;
+            }else if(seg!=0){
+                if(seg==1){
+                    console.log("Queda: "+seg+" segundo \n");
+                    seg--;
+                }else{
+                    console.log("Quedan: "+seg+" segundos \n");
+                    seg--;
+                }
+            }
+        }, 1000,min,seg);   
     }
     
 }
-
-
-function consegundos(seg){
-        setInterval(function() {
-            if(seg==0){
-                clearInterval();
-            }
-            console.log("Quedan: "+seg+" segundos \n");
-            seg--;
-        }, 1000,seg);   
-    }
