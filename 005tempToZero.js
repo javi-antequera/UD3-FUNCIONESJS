@@ -15,16 +15,11 @@ function temporizador(seg,min=0){
 
 
 function consegundos(seg){
-    for(let i=seg;i>=0;i--){
-        setTimeout(function() {
-            console.log(i+"\n");
-        }, 1000 * i);
-        //task(i);
+        setInterval(function() {
+            if(seg==0){
+                clearInterval();
+            }
+            console.log("Quedan: "+seg+" segundos \n");
+            seg--;
+        }, 1000,seg);   
     }
-
-    }
-    function task(i) {
-        setTimeout(function() {
-            console.log(i+"\n");
-        }, 1000 * i);
-      }
